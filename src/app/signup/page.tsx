@@ -1,31 +1,50 @@
 'use client';
 
+import axios from 'axios';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 export default function Signup() {
+  const router = useRouter();
   const [user, setUser] = useState<any>({
     email: '',
     password: '',
     username: '',
   });
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const onSignup = async () => {
+  const onSignup = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     try {
-      const res = await fetch('/api/signup', {
-        method: 'POST',
-        body: JSON.stringify(user),
-      });
-    } catch (error) {
-      console.log(error);
+      setLoading(true);
+      const res = await axios.post('/api/users/signup', user);
+      console.log('Signup success:', res.data);
+      toast.success('Signup successful');
+      router.push('/login');
+    } catch (error: any) {
+      console.log('Signup error:', error.message);
+      toast.error(error.response?.data?.error || 'Signup failed');
+    } finally {
+      setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (user.email.length > 0 && user.password.length > 0 && user.username.length > 0) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
+  }, [user]);
 
   return (
     <div className="min-h-screen bg-gray-300 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Sign up for an account
+          {loading ? 'Signing up...' : 'Sign up for an account'}
         </h2>
       </div>
 
@@ -91,15 +110,16 @@ export default function Signup() {
               <button
                 type="submit"
                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                disabled={buttonDisabled}
               >
-                Sign up
+                {buttonDisabled ? 'Signing up...' : 'Sign up'}
               </button>
             </div>
           </form>
 
           <p className="mt-4 text-center text-sm text-gray-800">
-            Already have an account? Please{' '}
-            <Link className="text-blue-600" href="/login">
+            Already have an account?{' '}
+            <Link className="text-blue-600 font-semibold" href="/login">
               Login
             </Link>
           </p>
