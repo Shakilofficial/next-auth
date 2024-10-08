@@ -62,7 +62,7 @@ export default function Signup() {
                   type="text"
                   placeholder="Enter Username"
                   required
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   value={user.username}
                   onChange={(e) => setUser({ ...user, username: e.target.value })}
                 />
@@ -81,7 +81,7 @@ export default function Signup() {
                   autoComplete="email"
                   placeholder="Enter Email"
                   required
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   value={user.email}
                   onChange={(e) => setUser({ ...user, email: e.target.value })}
                 />
@@ -99,7 +99,7 @@ export default function Signup() {
                   type="password"
                   placeholder="Enter Password"
                   required
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   value={user.password}
                   onChange={(e) => setUser({ ...user, password: e.target.value })}
                 />
