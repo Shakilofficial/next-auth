@@ -78,6 +78,7 @@ export default function Login() {
                 <input
                   id="password"
                   name="password"
+                  autoComplete="current-password"
                   type="password"
                   placeholder="Enter Password"
                   required

@@ -62,6 +62,7 @@ export default function Signup() {
                   type="text"
                   placeholder="Enter Username"
                   required
+                  autoComplete="username"
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   value={user.username}
                   onChange={(e) => setUser({ ...user, username: e.target.value })}
@@ -97,6 +98,7 @@ export default function Signup() {
                   id="password"
                   name="password"
                   type="password"
+                  autoComplete="current-password"
                   placeholder="Enter Password"
                   required
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
